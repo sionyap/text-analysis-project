@@ -1,3 +1,9 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
 public class TextAnalysis // main class
 {
     private String article1;
@@ -11,16 +17,33 @@ public class TextAnalysis // main class
         this.article3 = article3;
     }
 
-    public static void main(String[] args) // main method
+    public static void main(String[] args) throws Exception // main method
     {
         TextAnalysis a1 = new TextAnalysis("article 1", "article 2", "article 3");
-        // think about how to import article text files into JRE
 
-        while(true) // menu loop
+        try
         {
-            // TODO : recall accepting user input without creating a new obj every time
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            // reading the entire article without loops
 
+            System.out.print("Enter path of article: ");
+
+            // read filename
+            String path = reader.readLine();
+            File file = new File(path);
+            Scanner scan = new Scanner(file);
+
+            scan.useDelimiter("\\Z");
+
+            System.out.println(scan.next());
         }
+        catch(FileNotFoundException e)
+        {
+            System.out.println("File not found. Please try again.");
+            e.printStackTrace();
+        }
+
+
 
     }
 
