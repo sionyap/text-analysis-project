@@ -1,8 +1,6 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class TextAnalysis // main class
 {
@@ -31,19 +29,20 @@ public class TextAnalysis // main class
             // read filename
             String path = reader.readLine();
             File file = new File(path);
-            Scanner scan = new Scanner(file);
+            Scanner scan2 = new Scanner(file);
 
-            scan.useDelimiter("\\Z");
+            scan2.useDelimiter("\\Z");
 
-            System.out.println(scan.next());
+            System.out.println(scan2.next());
         }
         catch(FileNotFoundException e)
         {
             System.out.println("File not found. Please try again.");
-            e.printStackTrace();
         }
-
-
+        catch(IOException e)
+        {
+            System.out.println("Wrong file path. Please try again.");
+        }
 
     }
 
